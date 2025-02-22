@@ -1,0 +1,209 @@
+/* Global Styles */
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Comme", sans-serif;
+    background-color: #f5f6fa;  /* Light grey background */
+}
+
+/* NAVIGATION BAR */
+.navSection {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Ensures spacing between logo, title, and login/register */
+    background-color: #34495e;
+    color: white;
+    padding: 15px 20px;
+    font-size: 18px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-sizing: border-box;
+}
+.navSection img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.company {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.firmName {
+    font-weight: 600;
+    color: #ecf0f1;
+}
+
+.userAuth {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Adds spacing */
+    margin-right: 20px; /* Ensures padding from the right edge */
+    font-size: 16px;
+}
+.userAuth span {
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.userAuth span:hover {
+    color: #f1c40f;  /* Yellow hover effect */
+}
+
+/* SIDEBAR */
+.sideBarSection {
+    width: 220px;
+    height: 100vh;
+    background-color: #2c3e50;
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-top: 80px; /* Adjust to avoid overlapping with navbar */
+}
+
+.sideBarSection ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sideBarSection ul li {
+    padding: 15px;
+    margin: 5px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 16px;
+}
+
+.sideBarSection ul li:hover {
+    background-color: #34495e; /* Lighter blue hover */
+}
+
+/* Active Sidebar Item */
+.activeMenu {
+    background-color: #f1c40f;
+    color: #2c3e50;
+    font-weight: bold;
+}
+
+/* MAIN CONTENT */
+.collectionSection {
+    margin-left: 220px;
+    padding: 20px;
+    padding-top: 100px;  /* Adds space so content is not hidden under navbar */
+}
+
+/* FORMS */
+.tableForm {
+    width: 90%;
+    max-width: 500px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin: auto;
+}
+.authForm {
+    width: 90%;
+    max-width: 400px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px #2c3e50;
+    text-align: center;
+    margin: auto; /* Centers horizontally */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centers the box */
+}
+.authForm input {
+    width: 90%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+/* Buttons */
+.btnSubmit button {
+    background-color: #27ae60;
+    color: white;
+    padding: 12px;
+    width: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.btnSubmit button:hover {
+    background-color: #219150;
+}
+
+/* Table Styles */
+.product-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.product-table th {
+    background: #27ae60;
+    color: white;
+    padding: 10px;
+}
+
+.product-table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Delete Button */
+.deleteBtn {
+    background: red;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+}
+
+.deleteBtn:hover {
+    background: darkred;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navSection {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .sideBarSection {
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .collectionSection {
+        margin-left: 0;
+    }
+
+    .authForm, .tableForm {
+        width: 95%;
+    }
+}
