@@ -9,14 +9,24 @@ const FirmCollections = () => {
 
   const firmDataHandler = async () => {
     try {
-      const response = await fetch(`${API_URL}/vendor/all-vendors`);
-      const newFirmData = await response.json();
-      setFirmData(newFirmData.vendors);
+        const token = localStorage.getItem("token");  // ✅ Get token from localStorage
+        const response = await fetch(`${API_URL}/vendor/all-vendors`, {
+            headers: {
+                Authorization: `Bearer ${token}`,  // ✅ Send token in the request
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const newFirmData = await response.json();
+        setFirmData(newFirmData.vendors || []);  // ✅ Ensure firmData is always an array
     } catch (error) {
-      alert("firm data not fetched");
-      console.error("firm data not fetched", error);
+        alert("Firm data not fetched");
+        console.error("Firm data not fetched", error);
     }
-  };
+};
 
   useEffect(() => {
     firmDataHandler();

@@ -10,29 +10,26 @@ const firmSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    category: {
-        type: [{
-            type: String,
-            enum: ['veg', 'non-veg']
-        }]
-    },
-    region: {
-        type: [{
-            type: String,
-            enum: ['south-indian', 'north-indian', 'chinese', 'bakery']
-        }]
-    },
+    category: [{
+        type: String,
+        enum: ['veg', 'non-veg']
+    }],
+    region: [{
+        type: String,
+        enum: ['south-indian', 'north-indian', 'chinese', 'bakery']
+    }],
     offer: {
         type: String,
-
+        default: "No offer available",
     },
     image: {
-        type: String
+        type: String,
+        default: null,
     },
-    vendor: [{
+    vendor: {  // Changed from array to single reference if applicable
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Vendor'
-    }],
+    },
     products: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Product'
@@ -41,4 +38,4 @@ const firmSchema = new mongoose.Schema({
 
 const Firm = mongoose.model('Firm', firmSchema);
 
-module.exports = Firm
+module.exports = Firm;

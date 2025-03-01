@@ -1,9 +1,9 @@
 const express = require('express');
+const path = require('path'); // Added missing import
 const firmController = require('../controllers/firmController');
 const verifyToken = require('../middlewares/verifyToken');
 
-
-const router = express.Router()
+const router = express.Router();
 
 router.post('/add-firm', verifyToken, firmController.addFirm);
 
@@ -13,7 +13,6 @@ router.get('/uploads/:imageName', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'uploads', imageName));
 });
 
-router.delete('/:firmId', firmController.deleteFirmById);
-
+router.delete('/:firmId', verifyToken, firmController.deleteFirmById); // Added protection
 
 module.exports = router;

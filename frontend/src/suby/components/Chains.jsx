@@ -10,22 +10,27 @@ const Chains = () => {
     const [scrollPosition, setScrollPosition] = useState(0);
     const [loading, setLoading] = useState(true)
 
-    const vendorFirmHandler = async()=>{
-            try {
-                    const response = await fetch(`${API_URL}/vendor/all-vendors?order=desc`)
-                    const newData = await response.json()
-                        setVendorData(newData);
-                        console.log("this is api Data ", newData)
-                        setLoading(false)
-            } catch (error) {
-                alert("failed to fetch data")
-                console.error("failed to fetch data")
-                setLoading(true)
-            }
-    }
-            useEffect(()=>{
-                vendorFirmHandler()
-            }, [])
+    const vendorFirmHandler = async () => {
+        try {
+            const response = await fetch(`${API_URL}/vendor/all-vendors?order=desc`, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}` // Make sure token is stored properly
+                }
+            });
+    
+            if (!response.ok) throw new Error("Unauthorized");
+            
+            const newData = await response.json();
+            setVendorData(newData);
+            console.log("API Data: ", newData);
+            setLoading(false);
+        } catch (error) {
+            alert("Failed to fetch data: " + error.message);
+            console.error("Failed to fetch data", error);
+            setLoading(true);
+        }
+    };
+    
 
 const handleScroll =(direction)=>{
         const gallery = document.getElementById("chainGallery");

@@ -6,8 +6,9 @@ const productSchema = new mongoose.Schema({
         required: true
     },
     price: {
-        type: String,
-        required: true
+        type: Number,
+        required: true,
+        min: 0,
     },
     category: {
         type: [{
@@ -16,20 +17,23 @@ const productSchema = new mongoose.Schema({
         }]
     },
     image: {
-        type: String
+        type: String,
+        default: null,
     },
     bestSeller: {
-        type: Boolean
+        type: Boolean,
+        default: false,
     },
     description: {
-        type: String
+        type: String,
     },
-    firm: [{
+    firm: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Firm'
-    }]
+        ref: 'Firm',
+        required: true,
+    }
 });
 
 const Product = mongoose.model('Product', productSchema);
 
-module.exports = Product
+module.exports = Product;

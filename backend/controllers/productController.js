@@ -15,10 +15,10 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-const addProduct = async(req, res) => {
+const addProduct = async (req, res) => {
     try {
         const { productName, price, category, bestSeller, description } = req.body;
-        const image = req.file ? req.file.filename : undefined;
+        const image = req.file ? req.file.filename : null;
 
         const firmId = req.params.firmId;
         const firm = await Firm.findById(firmId);
@@ -34,22 +34,20 @@ const addProduct = async(req, res) => {
             bestSeller,
             description,
             image,
-            firm: firm._id
-        })
+            firm: firmId,
+        });
 
-        const savedProduct = await product.save();
-        firm.products.push(savedProduct);
+        await product.save(); // ✅ Ensure save is awaited
+        firm.products.push(product._id);
+        await firm.save(); // ✅ Save firm update
 
-
-        await firm.save()
-
-        res.status(200).json(savedProduct)
-
+        res.status(201).json(product);
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: "Internal server error" })
+        res.status(500).json({ error: "Server error", details: error.message });
     }
-}
+};
+
 
 const getProductByFirm = async(req, res) => {
     try {

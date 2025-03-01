@@ -1,21 +1,23 @@
-import React from 'react'
-import LandingPage from './vendorDashboard/pages/LandingPage'
-import { Routes, Route } from 'react-router-dom'
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import "./App.css"
-import NavBar from './vendorDashboard/components/NavBar'
-import Login from './vendorDashboard/components/forms/Login'
-import NotFound from './vendorDashboard/components/NotFound'
+import LandingPage from './vendorDashboard/pages/LandingPage';
+import NavBar from './vendorDashboard/components/NavBar';
+import Login from './vendorDashboard/components/forms/Login';
+import NotFound from './vendorDashboard/components/NotFound';
+
+import "./App.css";
 
 const App = () => {
   return (
-    <div>
+   <>
+      <NavBar />
       <Routes>
-          <Route path='/' element = {<LandingPage />}/>
-          <Route path='/*' element = {<NotFound />} />
+        <Route path='/' element={<LandingPage />} />
+        <Route path='/*' element={<NotFound />} />
       </Routes>
-    </div>
-  )
-}
+      </>
+  );
+};
 
-export default App
+export default App;
